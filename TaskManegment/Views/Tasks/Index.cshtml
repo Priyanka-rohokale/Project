@@ -1,0 +1,87 @@
+﻿@model IEnumerable<TaskManegment.Models.Tasks>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<head>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<h1>Tasks</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-info"><i class="fa-solid fa-plus"></i> Add New Tasks</a>
+</p>
+<div class="container mt-2 bg-gray" style="max-width: 150%; overflow-x: auto;">
+    <div class="card-header">
+        <h4>Task List</h4>
+    </div>
+    <div class="container mt-2 bg-gray">
+        <div class="table-responsive">
+            <table id="dataTable" class="table table-bordered table-striped" style="background-color:azure; width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DueDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssignedTo)
+            </th>
+
+          <th>Edit</th>
+          <th>View</th>
+          <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DueDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssignedTo)
+            </td>
+
+              <td>
+                <a asp-action="Edit" asp-route-id="@item.TaskId" class="btn btn-primary"><i class="fa-solid fa-edit"></i> Edit</a>
+               </td>
+                <td>
+                <a asp-action="Details" asp-route-id="@item.TaskId" class="btn btn-warning"><i class="fa-solid fa-eye"></i> View</a>
+
+                 </td>
+                <td>
+                 <a asp-action="Delete" asp-route-id="@item.TaskId" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Delete</a>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>
+        </div>
+    </div>
+</div>

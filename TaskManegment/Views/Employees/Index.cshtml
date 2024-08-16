@@ -1,0 +1,85 @@
+﻿@model IEnumerable<TaskManegment.Models.Employees>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<head>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<h1>Employee List</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-info"><i class="fa-solid fa-plus"></i> Add New Notes</a>
+</p>
+<div class="container mt-2 bg-gray" style="max-width: 150%; overflow-x: auto;">
+    <div class="card-header">
+    </div>
+    <div class="container mt-2 bg-gray">
+        <div class="table-responsive">
+            <table id="dataTable" class="table table-bordered table-striped" style="background-color:azure; width:100%">
+                <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Role)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Teams)
+            </th>
+
+                        <th>
+                            Edit
+                        </th>
+                        <th>
+                            View
+                        </th>
+                        <th>
+                            Delete
+                        </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Teams.TeamName)
+            </td>
+           
+            <td>
+             <a asp-action="Edit" asp-route-id="@item.EmpId" class="btn btn-primary"><i class="fa-solid fa-edit"></i> Edit</a>
+            </td>
+            <td>
+            <a asp-action="Details" asp-route-id="@item.EmpId" class="btn btn-warning"><i class="fa-solid fa-eye"></i> View</a>
+
+            </td>
+           <td>
+            <a asp-action="Delete" asp-route-id="@item.EmpId" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Delete</a>
+           </td>
+        </tr>
+}
+    </tbody>
+</table>
+        </div>
+    </div>
+</div>
